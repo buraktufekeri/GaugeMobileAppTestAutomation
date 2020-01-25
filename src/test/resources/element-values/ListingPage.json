@@ -1,0 +1,93 @@
+[
+  {
+    "key": "addTaskIcon",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/add_task_fab",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "addTaskTitle",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/add_task_title_edit_text",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "addTaskDescription",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/add_task_description_edit_text",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "saveTaskIcon",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/save_task_fab",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "listingTaskTitle",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/title_text",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "taskDelete",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/menu_delete",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "taskListedCheckbox",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/complete_checkbox",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "menuFilter",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/menu_filter",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "menuFilterElements",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/title",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "listingTasks",
+    "androidValue": "com.example.android.architecture.blueprints.master.mock:id/title_text",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "leftExplorerWindow",
+    "androidValue": "//android.widget.ImageButton[@content-desc=\"Gezinme çekmecesini aç\"]",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "leftMenuItem1",
+    "androidValue": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.view.View/androidx.appcompat.widget.LinearLayoutCompat[1]/android.widget.CheckedTextView",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "leftMenuItem2",
+    "androidValue": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.view.View/androidx.appcompat.widget.LinearLayoutCompat[2]/android.widget.CheckedTextView",
+    "androidType": "xpath",
+    "iosValue": "",
+    "iosType": ""
+  }
+]

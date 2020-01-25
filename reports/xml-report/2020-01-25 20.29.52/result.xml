@@ -1,0 +1,13 @@
+<testsuites>
+	<testsuite id="1" tests="6" failures="0" package="C:\Users\burak.tufekeri\Downloads\gaugemobileapp\specs\android\ListingPage.spec" time="346.408" timestamp="2020-01-25T20:29:52" name="ListingPage Control" errors="0" hostname="TECHLPT46">
+		<properties></properties>
+		<testcase classname="ListingPage Control" name="ListingPage Add Task" time="41.405"></testcase>
+		<testcase classname="ListingPage Control" name="ListingPage Delete Task" time="79.537"></testcase>
+		<testcase classname="ListingPage Control" name="ListingPage Delete Task And Re-Add" time="68.603"></testcase>
+		<testcase classname="ListingPage Control" name="ListingPage List The Completed Tasks" time="71.613"></testcase>
+		<testcase classname="ListingPage Control" name="ListingPage List The Active Tasks" time="70.675"></testcase>
+		<testcase classname="ListingPage Control" name="ListingPage Left Menu Control" time="14.575"></testcase>
+		<system-out></system-out>
+		<system-err></system-err>
+	</testsuite>
+</testsuites>
