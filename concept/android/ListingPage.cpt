@@ -1,13 +1,13 @@
 Created by burak.tufekeri on 24.01.2020
 
 # Listing Page Unique Task Add
-* "addTaskIcon" elementine tıkla
+* "addTaskIcon" elementine tikla
 * "addTaskTitle" elementine "Task Title" unique text gir
 * "addTaskDescription" elementine "Task Description" non unique text gir
-* "saveTaskIcon" elementine tıkla
+* "saveTaskIcon" elementine tikla
 
 # Listing Page Non Unique Task Add
-* "addTaskIcon" elementine tıkla
+* "addTaskIcon" elementine tikla
 * "addTaskTitle" elementine "Task Title" non unique text gir
 * "addTaskDescription" elementine "Task Description" non unique text gir
-* "saveTaskIcon" elementine tıkla
+* "saveTaskIcon" elementine tikla

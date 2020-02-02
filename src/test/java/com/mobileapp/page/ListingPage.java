@@ -7,12 +7,12 @@ import java.util.List;
 
 public class ListingPage extends BasePage {
 
-    @Step("<key> elementine tıkla")
+    @Step("<key> elementine tikla")
     public void elementClick(String key){
         clickObject(key, key + " elementine tıklandı.");
     }
 
-    @Step("<key> elementinin <index> .elemanına tıkla")
+    @Step("<key> elementinin <index> .elemanina tikla")
     public void elementClickWithIndex(String key, int index){
         clickObjectWithIndex(key, key + " elementinin " + index + ". elemanına tıklandı.", index-1);
     }
@@ -29,12 +29,12 @@ public class ListingPage extends BasePage {
         fillInputField(key, text, key + " elementine " + text + " datası girildi.");
     }
 
-    @Step("<key> unique text doğru eklendi mi?")
+    @Step("<key> unique text dogru eklendi mi")
     public void isCorrectUniqueText(String key){
         Assert.assertEquals(uniqueText, getElementText(key));
     }
 
-    @Step("<key> elementine ait task silindi mi?")
+    @Step("<key> elementine ait task silindi mi")
     public void isDeletedTask(String key){
         int listSize = getElementsCount(key);
         List<String> listingTasksTitleList = getElementsText(key);
@@ -45,7 +45,7 @@ public class ListingPage extends BasePage {
         }
     }
 
-    @Step("<key1> ve <key2> elementleri görüntülendi mi ve text leri doğru mu?")
+    @Step("<key1> ve <key2> elementleri görüntülendi mi ve text leri doğru mu")
     public void isLeftMenuElementsDisplayedAndTextsCorrect(String key1, String key2){
         Assert.assertTrue(isElementDisplayed(key1));
         Assert.assertTrue(isElementDisplayed(key2));

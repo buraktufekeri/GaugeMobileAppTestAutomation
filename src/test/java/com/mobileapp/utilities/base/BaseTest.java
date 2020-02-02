@@ -47,7 +47,7 @@ public class BaseTest {
             desiredCapabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
             desiredCapabilities.setCapability("unicodeKeyboard", false);
             desiredCapabilities.setCapability("resetKeyboard", false);
-            url = new URL("http://localhost:4723/wd/hub");
+            url = new URL("http://192.168.1.105:4444/wd/hub");
             appiumDriver = new AndroidDriver<>(url, desiredCapabilities);
             selector = SelectorFactory.createElementHelper(SelectorType.ANDROID);
         }else if (System.getenv("executionEnvironment").equalsIgnoreCase("ios")){
