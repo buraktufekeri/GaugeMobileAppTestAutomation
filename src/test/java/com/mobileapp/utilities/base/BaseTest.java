@@ -36,21 +36,21 @@ public class BaseTest {
             logger.info("Local Android");
             desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-            desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "GT-N7100");
-            desiredCapabilities.setCapability(MobileCapabilityType.UDID, "4d0074b94a4631ad");
-            desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "4.4.2");
+            desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "VFD 700");
+            desiredCapabilities.setCapability(MobileCapabilityType.UDID, "BUKVMFV48D9DV8DE");
+            desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "6.0");
 
-            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.example.android.architecture.blueprints.master.mock");
-            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity");
+            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.google.android.youtube");
+            desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.google.android.apps.youtube.app.WatchWhileActivity");
             desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator1");
             desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
             desiredCapabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
             desiredCapabilities.setCapability("unicodeKeyboard", false);
             desiredCapabilities.setCapability("resetKeyboard", false);
-            url = new URL("http://192.168.1.105:4444/wd/hub");
+            url = new URL("http://localhost:4723/wd/hub");
             appiumDriver = new AndroidDriver<>(url, desiredCapabilities);
             selector = SelectorFactory.createElementHelper(SelectorType.ANDROID);
-        }else if (System.getenv("executionEnvironment").equalsIgnoreCase("ios")){
+        } else if (System.getenv("executionEnvironment").equalsIgnoreCase("ios")){
             logger.info("Local IOS");
             desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
