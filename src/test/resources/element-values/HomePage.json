@@ -1,0 +1,23 @@
+[
+  {
+    "key": "youtubeHomePageSearchButton",
+    "androidValue": "com.google.android.youtube:id/menu_item_1",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "youtubeHomePageSearchText",
+    "androidValue": "com.google.android.youtube:id/search_edit_text",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "foundSearchText",
+    "androidValue": "android.widget.TextView",
+    "androidType": "class",
+    "iosValue": "",
+    "iosType": ""
+  }
+]

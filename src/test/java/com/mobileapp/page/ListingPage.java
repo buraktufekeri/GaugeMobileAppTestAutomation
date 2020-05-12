@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ListingPage extends BasePage {
 
-    @Step("<key> elementine tikla")
+    /*@Step("<key> elementine tikla")
     public void elementClick(String key){
         clickObject(key, key + " elementine tıklandı.");
     }
@@ -51,5 +51,5 @@ public class ListingPage extends BasePage {
         Assert.assertTrue(isElementDisplayed(key2));
         Assert.assertEquals("Task List", getElementText(key1));
         Assert.assertEquals("Statistics", getElementText(key2));
-    }
+    }*/
 }

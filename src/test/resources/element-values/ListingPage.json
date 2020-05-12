@@ -89,12 +89,5 @@
     "androidType": "xpath",
     "iosValue": "",
     "iosType": ""
-  },
-  {
-    "key": "youtubeHomePageSearchButton",
-    "androidValue": "com.google.android.youtube:id/menu_item_1",
-    "androidType": "id",
-    "iosValue": "",
-    "iosType": ""
   }
 ]
