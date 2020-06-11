@@ -1,8 +1,8 @@
 [
   {
     "key": "youtubeHomePageSearchButton",
-    "androidValue": "com.google.android.youtube:id/menu_item_1",
-    "androidType": "id",
+    "androidValue": "//android.widget.ImageView[@content-desc=\"Search\"]",
+    "androidType": "xpath",
     "iosValue": "",
     "iosType": ""
   },

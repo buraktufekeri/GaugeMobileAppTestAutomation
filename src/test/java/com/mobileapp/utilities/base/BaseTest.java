@@ -36,9 +36,9 @@ public class BaseTest {
             logger.info("Local Android");
             desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-            desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "VFD 700");
-            desiredCapabilities.setCapability(MobileCapabilityType.UDID, "BUKVMFV48D9DV8DE");
-            desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "6.0");
+            desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "AOSP on IA Emulator");
+            desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+            desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
 
             desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.google.android.youtube");
             desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.google.android.apps.youtube.app.WatchWhileActivity");
