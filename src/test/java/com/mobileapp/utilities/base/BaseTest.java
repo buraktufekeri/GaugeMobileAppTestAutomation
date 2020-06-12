@@ -17,6 +17,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -31,13 +32,23 @@ public class BaseTest {
     @BeforeScenario
     public void beforeScenario() throws MalformedURLException {
         DesiredCapabilities desiredCapabilities;
-        URL url;
+        URL url = null;
         if (System.getenv("executionEnvironment").equalsIgnoreCase("android")){
             logger.info("Local Android");
             desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
             desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "AOSP on IA Emulator");
-            desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+            if (System.getenv("executionDevice").equalsIgnoreCase("AndroidPixel3a")) {
+                logger.info("AndroidPixel3a");
+                desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+                logger.info("AndroidPixel3a > http://localhost:4723/wd/hub");
+                url = new URL("http://localhost:4723/wd/hub");
+            } else if (System.getenv("executionDevice").equalsIgnoreCase("AndroidPixel2")) {
+                logger.info("AndroidPixel2");
+                desiredCapabilities.setCapability(MobileCapabilityType.UDID, "emulator-5556");
+                logger.info("AndroidPixel2 > http://localhost:4733/wd/hub");
+                url = new URL("http://localhost:4733/wd/hub");
+            }
             desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
 
             desiredCapabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.google.android.youtube");
@@ -47,7 +58,6 @@ public class BaseTest {
             desiredCapabilities.setCapability(MobileCapabilityType.FULL_RESET, false);
             desiredCapabilities.setCapability("unicodeKeyboard", false);
             desiredCapabilities.setCapability("resetKeyboard", false);
-            url = new URL("http://localhost:4723/wd/hub");
             appiumDriver = new AndroidDriver<>(url, desiredCapabilities);
             selector = SelectorFactory.createElementHelper(SelectorType.ANDROID);
         } else if (System.getenv("executionEnvironment").equalsIgnoreCase("ios")){
