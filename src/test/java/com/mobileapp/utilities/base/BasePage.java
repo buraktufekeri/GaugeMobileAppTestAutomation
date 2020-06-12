@@ -3,9 +3,11 @@ package com.mobileapp.utilities.base;
 import com.mobileapp.utilities.model.SelectorInfo;
 import io.appium.java_client.MobileElement;
 import org.apache.commons.lang.RandomStringUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,8 +67,62 @@ public class BasePage extends BaseTest {
         return mobileElement;
     }
 
+    protected void clickObject(String key, String message) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
+        try {
+            MobileElement mobileElement = findElementWithKey(key);
+            if (mobileElement == null){
+                throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+            } else {
+                waitUntilExpectedElementClickable(mobileElement);
+                mobileElement.click();
+                logger.info("---------------" + message + "---------------");
+            }
+        } catch (NullPointerException e){
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+    }
+
+    protected void clickObjectWithIndex(String key, String message, int index) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
+        try {
+            MobileElement mobileElement = findElementsWithKey(key).get(index);
+            if (mobileElement == null){
+                throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + "[" + index + "]" + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+            } else {
+                waitUntilExpectedElementClickable(mobileElement);
+                mobileElement.click();
+                logger.info("---------------" + message + "---------------");
+            }
+        } catch (NullPointerException e){
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + "[" + index + "]" + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+    }
+
+    protected void clickObjects(String key, String message) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+        List<MobileElement> mobileElementList = findElementsWithKey(key);
+
+        try {
+            for (int i = 0; i < mobileElementList.size(); i++) {
+                if (mobileElementList.get(i) == null){
+                    throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+                } else {
+                    waitUntilExpectedElementClickable(mobileElementList.get(i));
+                    mobileElementList.get(i).click();
+                    logger.info("---------------" + message + " " + (i+1) + ".index---------------");
+                }
+            }
+        } catch (NullPointerException e){
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+    }
+
     protected void fillInputField(String key, String text, String message) {
         SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
         try {
             MobileElement mobileElement = findElementWithKey(key);
             if (mobileElement.isEnabled()) {
@@ -75,18 +131,60 @@ public class BasePage extends BaseTest {
                 logger.info("---------------" + message + "---------------");
             }
         } catch (NullPointerException e) {
-            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " Element not found");
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+    }
+
+    protected void fillInputFieldWithIndex(String key, String text, String message, int index) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
+        try {
+            MobileElement mobileElement = findElementsWithKey(key).get(index);
+            if (mobileElement.isEnabled()) {
+                mobileElement.clear();
+                mobileElement.sendKeys(text);
+                logger.info("---------------" + message + "---------------");
+            }
+        } catch (NullPointerException e) {
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + "[" + index + "]" + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
         }
     }
 
     protected String getElementText(String key) {
         SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
         try {
             MobileElement mobileElement = findElementWithKey(key);
             return mobileElement.getText();
         } catch (NullPointerException e){
-            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " Element not found");
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
         }
+    }
+
+    protected String getElementTextWithIndex(String key, int index) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
+        try {
+            MobileElement mobileElement = findElementsWithKey(key).get(index);
+            return mobileElement.getText();
+        } catch (NullPointerException e){
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + "[" + index + "]" + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+    }
+
+    protected List<String> getElementsText(String key) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+        List<String> list = new ArrayList<>();
+
+        try {
+            for (MobileElement mobileElement : findElementsWithKey(key)) {
+                list.add(mobileElement.getText());
+            }
+        } catch (NullPointerException e){
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+
+        return list;
     }
 
     protected boolean isElementDisplayed(String key) {
@@ -104,37 +202,50 @@ public class BasePage extends BaseTest {
         return found;
     }
 
-    protected int getElementsCount(String key) {
-        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
-        try {
-            return findElementsWithKey(key).size();
-        } catch (NullPointerException e){
-            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " Element not found");
-        }
-    }
-
-    protected List<String> getElementsText(String key) {
-        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
-        List<String> list = new ArrayList<>();
+    protected boolean isElementDisplayedWithIndex(String key, int index) {
+        boolean found = false;
 
         try {
-            for (MobileElement mobileElement : findElementsWithKey(key)) {
-                list.add(mobileElement.getText());
+            MobileElement mobileElement = findElementsWithKey(key).get(index);
+            if (mobileElement != null && mobileElement.isDisplayed()){
+                found = true;
             }
-        } catch (NullPointerException e){
-            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " Element not found");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
 
-        return list;
+        return found;
     }
 
     protected String getAttribute(String key, String attributeName) {
         SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
         try {
             MobileElement mobileElement = findElementWithKey(key);
             return mobileElement.getAttribute(attributeName);
         } catch (NullPointerException e){
-            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " Element not found");
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+    }
+
+    protected String getAttributeWithIndex(String key, String attributeName, int index) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
+        try {
+            MobileElement mobileElement = findElementsWithKey(key).get(index);
+            return mobileElement.getAttribute(attributeName);
+        } catch (NullPointerException e){
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + "[" + index + "]" + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
+        }
+    }
+
+    protected int getElementsCount(String key) {
+        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
+
+        try {
+            return findElementsWithKey(key).size();
+        } catch (NullPointerException e){
+            throw new RuntimeException("key=" + key + " by=" + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
         }
     }
 
@@ -147,59 +258,7 @@ public class BasePage extends BaseTest {
         }
     }
 
-    protected void clickObject(String key, String message) {
-        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
-
-        try {
-            MobileElement mobileElement = findElementWithKey(key);
-            if (mobileElement == null){
-                throw new RuntimeException("ELEMENT " + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
-            } else {
-                waitUntilExpectedElementClickable(mobileElement);
-                mobileElement.click();
-                logger.info("---------------" + message + "---------------");
-            }
-        } catch (NullPointerException e){
-            throw new RuntimeException("ELEMENT " + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
-        }
-    }
-
-    protected void clickObjectWithIndex(String key, String message, int index) {
-        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
-
-        try {
-            MobileElement mobileElement = findElementsWithKey(key).get(index);
-            if (mobileElement == null){
-                throw new RuntimeException("ELEMENT " + selectorInfo.getBy().toString() + index + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
-            } else {
-                waitUntilExpectedElementClickable(mobileElement);
-                mobileElement.click();
-                logger.info("---------------" + message + "---------------");
-            }
-        } catch (NullPointerException e){
-            throw new RuntimeException("ELEMENT " + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
-        }
-    }
-
-    protected void clickObjects(String key, String message) {
-        SelectorInfo selectorInfo = selector.getSelectorInfo(key);
-
-        try {
-            for (MobileElement mobileElement : findElementsWithKey(key)) {
-                if (mobileElement == null){
-                    throw new RuntimeException("ELEMENT " + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
-                } else {
-                    waitUntilExpectedElementClickable(mobileElement);
-                    mobileElement.click();
-                    logger.info("---------------" + message + "---------------");
-                }
-            }
-        } catch (NullPointerException e){
-            throw new RuntimeException("ELEMENT " + selectorInfo.getBy().toString() + " NOT EXIST; AUTOMATION DATAS MAY BE INVALID!");
-        }
-    }
-
-    protected String createRandomAlphanumeric(int digit){
+    protected String createRandomAlphanumeric(int digit) {
         return RandomStringUtils.randomAlphanumeric(digit);
     }
 }

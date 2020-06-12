@@ -1,5 +1,12 @@
 [
   {
+    "key": "widgetButton",
+    "androidValue": "android.widget.Button",
+    "androidType": "class",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
     "key": "youtubeHomePageSearchButton",
     "androidValue": "//android.widget.ImageView[@content-desc=\"Search\"]",
     "androidType": "xpath",

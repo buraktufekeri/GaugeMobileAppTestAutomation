@@ -4,53 +4,47 @@ import com.mobileapp.utilities.base.BasePage;
 import com.thoughtworks.gauge.Step;
 import org.junit.Assert;
 
-import java.util.List;
-
 public class StepDefinitionBase extends BasePage {
 
-    @Step("<key> elementine tikla")
-    public void elementClick(String key){
-        clickObject(key, key + " elementine tıklandı.");
+    @Step("<key> element click")
+    public void clickObject(String key) {
+        clickObject(key, key + " element clicked.");
     }
 
-    @Step("<key> elementinin <index> .elemanina tikla")
-    public void elementClickWithIndex(String key, int index){
-        clickObjectWithIndex(key, key + " elementinin " + index + ". elemanına tıklandı.", index-1);
+    @Step("<key> element click with <index> .element")
+    public void clickObjectWithIndex(String key, int index) {
+        clickObjectWithIndex(key, key + " element clicked with " + index + ".index.", index-1);
     }
 
-    private String uniqueText;
-    @Step("<key> elementine <text> unique text gir")
-    public void setUniqueText(String key, String text){
-        uniqueText = text + createRandomAlphanumeric(10);
-        fillInputField(key, uniqueText, key + " elementine " + uniqueText + " datası girildi.");
+    @Step("<key> elements click")
+    public void clickObjects(String key) {
+        clickObjects(key, key + " element clicked");
     }
 
-    @Step("<key> elementine <text> non unique text gir")
-    public void setNonUniqueText(String key, String text){
-        fillInputField(key, text, key + " elementine " + text + " datası girildi.");
+    @Step("<key> element fill <text> text")
+    public void fillInputField(String key, String text) {
+        fillInputField(key, text, key + " element filled " + text);
     }
 
-    @Step("<key> unique text dogru eklendi mi")
-    public void isCorrectUniqueText(String key){
-        Assert.assertEquals(uniqueText, getElementText(key));
+    @Step("<key> element fill <text> text with <index> .element")
+    public void fillInputFieldWithIndex(String key, String text, int index) {
+        fillInputFieldWithIndex(key, text, key + " element filled with " + index + ".index.", index-1);
     }
 
-    @Step("<key> elementine ait task silindi mi")
-    public void isDeletedTask(String key){
-        int listSize = getElementsCount(key);
-        List<String> listingTasksTitleList = getElementsText(key);
-        for (int i = 0; i < listSize; i++){
-            if (listingTasksTitleList.get(i).equals(uniqueText)){
-                Assert.fail(key + " elementli " + uniqueText + " title lı task silinmedi!");
-            }
+    @Step("<key> element is displayed")
+    public void isKeyElementDisplayed(String key) {
+        Assert.assertTrue(key + " element couldn't be displayed", isElementDisplayed(key));
+    }
+
+    @Step("<key> element is displayed with <index> .element")
+    public void isKeyElementDisplayedWithIndex(String key, int index) {
+        Assert.assertTrue(key + " element couldn't be displayed " + index + ".index.", isElementDisplayedWithIndex(key, index-1));
+    }
+
+    @Step("<key> elements is displayed")
+    public void isKeyElementsDisplayed(String key) {
+        for (int i = 0; i < getElementsCount(key); i++) {
+            Assert.assertTrue(key + " element " + (i+1) + ".element couldn't be displayed", isElementDisplayedWithIndex(key, i));
         }
-    }
-
-    @Step("<key1> ve <key2> elementleri görüntülendi mi ve text leri doğru mu")
-    public void isLeftMenuElementsDisplayedAndTextsCorrect(String key1, String key2){
-        Assert.assertTrue(isElementDisplayed(key1));
-        Assert.assertTrue(isElementDisplayed(key2));
-        Assert.assertEquals("Task List", getElementText(key1));
-        Assert.assertEquals("Statistics", getElementText(key2));
     }
 }
