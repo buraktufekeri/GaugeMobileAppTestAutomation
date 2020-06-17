@@ -1,0 +1,65 @@
+[
+  {
+    "key": "introductionExit",
+    "androidValue": "com.softtech.parakod.uat:id/imgBtnIntroductionExit",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "leftMenu",
+    "androidValue": "com.softtech.parakod.uat:id/notif_componen_image",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "doActivation",
+    "androidValue": "com.softtech.parakod.uat:id/textview_profili_gor",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "agreeContract",
+    "androidValue": "com.softtech.parakod.uat:id/checkbox_muvafakat_sozlesmesi",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "btnLoginContinue",
+    "androidValue": "com.softtech.parakod.uat:id/btnLoginContinue",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "textBoxCustomerNo",
+    "androidValue": "com.softtech.parakod.uat:id/textinput_placeholder",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "rootView",
+    "androidValue": "com.softtech.parakod.uat:id/fragment_container",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "textBoxPassword",
+    "androidValue": "com.softtech.parakod.uat:id/edittext_password_temppasword",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  },
+  {
+    "key": "btnContinue",
+    "androidValue": "com.softtech.parakod.uat:id/btnContinue",
+    "androidType": "id",
+    "iosValue": "",
+    "iosType": ""
+  }
+]

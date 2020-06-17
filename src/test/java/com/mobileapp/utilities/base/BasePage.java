@@ -2,6 +2,9 @@ package com.mobileapp.utilities.base;
 
 import com.mobileapp.utilities.model.SelectorInfo;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +12,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import javax.annotation.Nullable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BasePage extends BaseTest {
@@ -260,5 +266,64 @@ public class BasePage extends BaseTest {
 
     protected String createRandomAlphanumeric(int digit) {
         return RandomStringUtils.randomAlphanumeric(digit);
+    }
+
+    protected void keyboardSendKeysActions(String androidKey){
+        AndroidKey androidKey1 = null;
+        switch (androidKey) {
+            case "ENTER":
+                androidKey1 = AndroidKey.ENTER;
+                break;
+            case "CANCEL":
+                androidKey1 = AndroidKey.CLEAR;
+                break;
+            default:
+                logger.info(androidKey + " mismatch");
+        }
+        try {
+            ((AndroidDriver<?>) appiumDriver).pressKey(new KeyEvent().withKey(androidKey1));
+        } catch (NullPointerException e) {
+            throw new RuntimeException("androidKey1 cannot to be null");
+        }
+    }
+
+    protected String getNowTime(String dateTypeFormat){
+        Date nowTime = new Date();
+        DateFormat dateFormat = null;
+
+        switch (dateTypeFormat) {
+            case "yyyy/MM/dd":
+                dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                break;
+            case "dd/MM/yyyy":
+                dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                break;
+            case "yyyy-MM-dd":
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                break;
+            case "dd-MM-yyyy":
+                dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                break;
+            case "yyyy.MM.dd":
+                dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+                break;
+            case "dd.MM.yyyy":
+                dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                break;
+            case "MM/dd/yy":
+                dateFormat = new SimpleDateFormat("MM/dd/yy");
+                break;
+        }
+
+        assert dateFormat != null;
+        return dateFormat.format(nowTime);
+    }
+
+    protected void threadSleep(int second){
+        try {
+            Thread.sleep(second*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
