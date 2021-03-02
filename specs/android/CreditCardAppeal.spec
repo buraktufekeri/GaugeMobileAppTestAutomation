@@ -22,3 +22,4 @@ tags:CreditCardAppeal
 * "textBoxCustomerNo" element fill "MM/dd/yy" dateFormat
 * "btnLoginContinue" element click
 * "btnContinue" element click
+Test Commit
